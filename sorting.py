@@ -221,3 +221,24 @@ def quick_sort(xs, cmp=cmp_standard):
     You should directly modify the input xs variable instead of returning
     a copy of the list.
     '''
+    quicksortmini(xs, 0, len(xs) - 1, cmp)
+
+
+def quicksortmini(xs, lower, upper, cmp):
+    if upper > lower:
+        part = partition(xs, lower, upper, cmp)
+        quicksortmini(xs, lower, part - 1, cmp)
+        quicksortmini(xs, part + 1, upper, cmp)
+
+
+def partition(xs, lower, upper, cmp):
+    part = xs[upper]
+    for j in range(lower, upper + 1):
+        if cmp(xs[j], part) == -1:
+            temp = xs[lower]
+            xs[lower] = xs[j]
+            xs[j] = temp
+            lower += 1
+    xs[upper] = xs[lower]
+    xs[lower] = part
+    return lower
