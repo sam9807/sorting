@@ -134,15 +134,15 @@ def merge_sorted(xs, cmp=cmp_standard):
     if len(xs) <= 1:
         return xs
     else:
-        M = len(xs)//2
-        L = xs[:M]
-        R = xs[M:]
+        md = len(xs)//2
+        lt = xs[:md]
+        rt = xs[md:]
 
-        merge_sorted(L, cmp)
-        merge_sorted(R, cmp)
+        merge_sorted(lt, cmp)
+        merge_sorted(rt, cmp)
 
-        return _merged(merge_sorted(L, cmp=cmp),
-                       merge_sorted(R, cmp=cmp), cmp=cmp)
+        return _merged(merge_sorted(lt, cmp=cmp),
+                       merge_sorted(rt, cmp=cmp), cmp=cmp)
 
 
 def quick_sorted(xs, cmp=cmp_standard):
